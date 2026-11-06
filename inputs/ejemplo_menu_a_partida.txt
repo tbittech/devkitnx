@@ -1,0 +1,16 @@
+# Replay de inputs para --at-input=sdmc:/devkitnx/ejemplo_menu_a_partida.txt
+# Formato: <frame> <botones>   (se mantiene hasta la línea siguiente)
+# Botones: A B X Y L R ZL ZR PLUS MINUS UP DOWN LEFT RIGHT LSTICK RSTICK, combinados con +
+# "-" = nada apretado. "END" = fin del replay (manda [AT] mark input_end y devuelve el control).
+# Para que el juego vea "apretó", dejá al menos un frame sin el botón entre dos pulsaciones.
+
+0     -
+120   PLUS        # saltar intro
+122   -
+200   DOWN        # bajar en el menú
+202   -
+210   A           # elegir modo
+212   -
+400   RIGHT+A     # ejemplo de combinación
+404   -
+1200  END

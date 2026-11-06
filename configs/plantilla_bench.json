@@ -1,0 +1,32 @@
+{
+  "_completar": "Bench con el replay grabado (AGENTS.md, paso 6). La IA reemplaza cada <...> y guarda una copia como configs/<port>_bench.json. <tope> = frames máximos por si falta el END de la grabación.",
+  "name": "<port>-bench",
+  "switch_ip": "<IP de la Switch>",
+  "nxlink": "<ruta al nxlink.exe que deja pasar el firewall>",
+
+  "build": { "cmd": "<comando de build del port>", "cwd": "<carpeta del port, relativa a esta config>" },
+  "nro": "<ruta al .nro, relativa a esta config>",
+  "upload_path": "<carpeta del port en sdmc:/switch/>/<port>-at.nro",
+
+  "args": ["--autotest=bench", "--perf", "--at-input=sdmc:/switch/<carpeta del port>/bench_input.txt",
+           "--at-exit-at-end", "--at-exit-after=<tope>"],
+
+  "timeout_total": 1200,
+  "budget_ms": 16.667,
+  "perf_from_mark": "<escena>",
+  "expect": [
+    { "mark": "boot",     "within": 120 },
+    { "mark": "<escena>", "within": 600 }
+  ],
+
+  "sysbotbase": {
+    "enabled": true,
+    "port": 6000,
+    "before_run": [ { "click": "HOME" }, { "wait": 2 }, { "click": "A" }, { "wait": 4 } ],
+    "open_netloader": false,
+    "on_mark": {
+      "<escena>": [ { "wait": 5 }, { "screenshot": "escena" } ]
+    },
+    "on_finish": []
+  }
+}

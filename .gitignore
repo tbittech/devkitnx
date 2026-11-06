@@ -1,0 +1,27 @@
+runs/
+examples/demo/build/
+examples/demo/*.elf
+examples/demo/*.nacp
+examples/demo/*.nro
+__pycache__/
+
+# Nada del juego ni del port en el repo
+*.nro
+!sd/switch/netloader-nx.nro
+*.nxpack
+*.nxidx
+*.xex
+*.xbe
+*.iso
+*.xci
+*.nca
+prod.keys
+title.keys
+*.keys
+# Grabaciones de partidas (bench_input.txt) quedan en la SD; las locales con este sufijo no se suben
+inputs/*_local.txt
+# Configs de cada dev (IP, rutas, su juego): solo se suben las plantillas
+configs/*.json
+!configs/plantilla*.json
+# Estado del trabajo del dev sobre devkitnx
+devkitstatus.md

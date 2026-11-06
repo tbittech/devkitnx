@@ -1,0 +1,13 @@
+{
+  "name": "simulacro",
+  "nxlink": ["python", "fake_nxlink.py"],
+  "nro": "../examples/demo/demo.nro",
+  "args": ["--autotest=practica", "--perf"],
+  "timeout_total": 30,
+  "expect": [
+    { "mark": "boot",        "within": 5 },
+    { "mark": "menu_ready",  "within": 5 },
+    { "mark": "match_start", "within": 5 },
+    { "mark": "match_end",   "within": 10 }
+  ]
+}
