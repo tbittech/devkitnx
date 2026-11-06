@@ -165,8 +165,12 @@ python runner/nxtest.py run tests/simulacro.json --no-build -- --sim=hang
 - Si el juego se cuelga feo o salta el error de Atmosphère, el runner lo detecta (no llega el aviso), pero la consola se reinicia a mano.
 - Al terminar el `.nro`, hbmenu vuelve y hay que reabrir el netloader (Y). Con sys-botbase el runner lo hace solo.
 - Las zonas miden tiempo de CPU del hilo principal. La GPU trabaja en paralelo: si `present` (el swap) tarda mucho, el cuello está en la GPU.
-- Frame y zonas son de un solo hilo: llamalas desde el loop principal. `at_input` y `at_record` pueden ir en el hilo del pad.
+- Frame y zonas son de un solo hilo: llamalas desde el loop principal. `at_input` y `at_record` pueden ir en el hilo del pad, y `at_vblank` en el del tick del juego.
 
 ## Ejemplo: un port multihilo (recompilación estática de Xbox 360)
 
 En un port donde el frame termina en otro hilo (el swap de la guest) y la GPU se mide aparte: `at_frame_end(); at_frame_begin();` en el swap; los tiempos de la GPU y de otros hilos se pasan por atómicos y entran al frame con `at_zone_add` en ese mismo swap; `at_record`/`at_input` en la lectura del pad del jugador 1; `at_should_quit()` dispara el mismo cierre que HOME → cerrar (cierra el título entero, por eso `before_run` reabre el netloader). Grabación y bench: `AGENTS.md`, paso 6, con `configs/plantilla_grabar.json` y `configs/plantilla_bench.json`.
+
+## Licencia
+
+devkitnx (header, runner, plantillas, demo y docs) es MIT: ver `LICENSE`. Los binarios de `sd/` tienen sus propias licencias (sys-botbase GPL-3.0, nx-hbmenu/nx-hbloader ISC): ver `sd/CREDITOS.md`.
